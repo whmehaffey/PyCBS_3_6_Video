@@ -110,7 +110,7 @@ def loadConfig_ButtonPressed():
     import os
     import GlobalVars       
             
-    loadfilename = (QtGui.QFileDialog.getOpenFileName(ui,'Open Config File', GlobalVars.path,'*.TAFcfg'))  
+    loadfilename = (QtWidgets.QFileDialog.getOpenFileName(ui,'Open Config File', GlobalVars.path,'*.TAFcfg'))  
     GlobalVars.loadConfig(loadfilename[0],ui) 
 
 def updateSampleRate():
@@ -121,7 +121,7 @@ def updateSampleRate():
 def saveConfig_ButtonPressed():
     import GlobalVars
   
-    savefilename = (QtGui.QFileDialog.getSaveFileName(ui,'Open Config File', GlobalVars.path,'*.TAFcfg','*.TAFcfg'))  
+    savefilename = (QtWidgets.QFileDialog.getSaveFileName(ui,'Open Config File', GlobalVars.path,'*.TAFcfg','*.TAFcfg'))  
     GlobalVars.saveConfig(savefilename[0],ui)
 
 def StartPushButton():
@@ -194,17 +194,17 @@ def WorkingDirpushButtonClicked():
     import os
     import GlobalVars
     
-    dialog = QtGui.QFileDialog()
-    dialog.setFileMode(QtGui.QFileDialog.Directory)
-    dialog.setOption(QtGui.QFileDialog.ShowDirsOnly, True)    
-    directory = QtGui.QFileDialog.getExistingDirectory(dialog, 'Select Drive')
+    dialog = QtWidgets.QFileDialog()
+    dialog.setFileMode(QtWidgets.QFileDialog.Directory)
+    dialog.setOption(QtWidgets.QFileDialog.ShowDirsOnly, True)    
+    directory = QtWidgets.QFileDialog.getExistingDirectory(dialog, 'Select Drive')
     directory = str(directory)    
     GlobalVars.path=directory+'/'
     
 
-class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
-        QtGui.QMainWindow.__init__(self)
+        QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         
@@ -238,7 +238,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.VideoSelectionComboBox.currentIndexChanged.connect(VidSelectChanged);
 
 if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     ui = MainWindow()
     ui.show()
     RescanInputsButtonPushed()

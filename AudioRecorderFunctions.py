@@ -56,7 +56,7 @@ def TriggeredRecordAudio(ui):
  import array
  import pydub;
  
- MIN_DUR=GlobalVars.buffertime*2+0.1;#
+ MIN_DUR=GlobalVars.buffertime+0.1;#
  threshold=GlobalVars.threshold;
  SILENCE_LIMIT = GlobalVars.buffertime;
  PREV_AUDIO = GlobalVars.buffertime;
