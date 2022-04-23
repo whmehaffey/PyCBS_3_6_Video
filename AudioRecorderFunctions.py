@@ -55,6 +55,7 @@ def TriggeredRecordAudio(ui):
  global graph_win
  import array
  import pydub;
+ import audioop;
  
  MIN_DUR=GlobalVars.buffertime+0.1;#
  threshold=GlobalVars.threshold;
@@ -156,15 +157,15 @@ def TriggeredRecordAudio(ui):
   if (pyaudio.get_sample_size(FORMAT)==2):
       plotarray = array.array("h",data);  # force 16 bit, since that's the correct #
   else:
-      plotarray=  array.array("i",data);  # not 16 bit, so.... 
-      
- 
+      plotarray=  array.array("i",data);  # not 16 bit, so....       
   
   if (newframe):
       permwinimage.append(frame);
       permwintimes.append(newtime-start);
-
-  if(sum([x > GlobalVars.threshold for x in plotarray])>0 and len(audio2send)<MAX_DUR*rel):    
+      
+  currmax=audioop.max(data,2);
+    
+  if (currmax > GlobalVars.threshold) and (len(audio2send)<MAX_DUR*rel):      
    if(not started):
     ui.ListeningTextBox.setText('<span style="color:red">singing</span>')
     started = True
